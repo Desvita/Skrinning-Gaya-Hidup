@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Skrining Gaya Hidup Cegah Hipertensi</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+background-color: #f2f2f2;
+}
+h1 {
+text-align: center;
+color: #333;
+}
+.question {
+background: #fff;
+padding: 15px;
+margin-bottom: 10px;
+border-radius: 5px;
+}
+.question p {
+margin: 0 0 10px 0;
+}
+.options label {
+margin-right: 15px;
+}
+button {
+display: block;
+margin: 20px auto;
+padding: 10px 20px;
+font-size: 16px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+button:hover {
+background-color: #45a049;
+}
+</style>
+</head>
+<body>
+<h1>Skrining Gaya Hidup Cegah Hipertensi</h1>
+<form id="screeningForm">
+<!-- Questions will be inserted here by JavaScript -->
+</form>
+<button type="button" onclick="submitForm()">Kirim Jawaban</button>
+
+<script>
+const questions = [
+"Apakah Anda menambahkan garam berlebih pada makanan Anda?",
+"Apakah Anda mengonsumsi makanan cepat saji (fast food)?",
+"Apakah Anda mengonsumsi makanan olahan (sosis, nugget, kornet)?",
+"Apakah Anda makan buah setiap hari?",
+"Apakah Anda makan sayur setiap hari?",
+"Apakah Anda minum minuman manis (teh manis, soda, kopi susu kemasan)?",
+"Apakah Anda mengonsumsi gorengan?",
+"Apakah Anda berolahraga minimal 30 menit per hari?",
+"Apakah Anda merasa stres berlebihan dalam keseharian Anda?",
+"Apakah Anda merokok?",
+"Apakah Anda mengonsumsi alkohol?",
+"Apakah Anda memeriksa tekanan darah secara rutin?",
+"Apakah Anda memantau berat badan Anda secara rutin?",
+"Apakah Anda tidur cukup (7-8 jam per malam)?",
+"Apakah Anda mengelola waktu istirahat di sela pekerjaan?",
+"Apakah Anda sering mengonsumsi makanan tinggi lemak (misalnya kulit ayam, jeroan)?",
+"Apakah Anda memiliki waktu bersantai atau hobi yang menenangkan?",
+"Apakah Anda sering mengonsumsi mie instan?",
+"Apakah Anda sering mengonsumsi makanan tinggi gula (kue, biskuit, permen)?",
+"Apakah Anda rutin melakukan pemeriksaan kesehatan (medical check-up)?"
+];
+
+const options = ["Tidak sama sekali", "Jarang", "Sering", "Sering sekali"];
+
+const form = document.getElementById('screeningForm');
+
+questions.forEach((question, index) => {
+const div = document.createElement('div');
+div.className = 'question';
+
+const p = document.createElement('p');
+p.textContent = `${index + 1}. ${question}`;
+div.appendChild(p);
+
+const optionDiv = document.createElement('div');
+optionDiv.className = 'options';
+
+options.forEach(option => {
+const label = document.createElement('label');
+const input = document.createElement('input');
+input.type = 'radio';
+input.name = `q${index + 1}`;
+input.value = option;
+label.appendChild(input);
+label.appendChild(document.createTextNode(` ${option}`));
+optionDiv.appendChild(label);
+});
+
+div.appendChild(optionDiv);
+form.appendChild(div);
+});
+
+function submitForm() {
+let answers = {};
+questions.forEach((_, i) => {
+const name = `q${i + 1}`;
+const selected = document.querySelector(`input[name="${name}"]:checked`);
+answers[name] = selected ? selected.value : "Belum dijawab";
+});
+
+console.log("Jawaban Anda:", answers);
+alert("Terima kasih sudah mengisi skrining!");
+}
+</script>
+</body>
+</html>
